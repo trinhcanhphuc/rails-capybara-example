@@ -5,6 +5,20 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+
+ENV['NO_PROXY'] = ENV['no_proxy'] = '127.0.0.1'
+
+Capybara.app_host = 'http://127.0.0.1:3000'
+Capybara.server_port = 3000
+Capybara.default_driver = :selenium_chrome
+Capybara.default_selector = :css
+Capybara.default_max_wait_time = 10
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
