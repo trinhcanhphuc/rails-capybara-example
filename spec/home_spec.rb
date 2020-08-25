@@ -7,6 +7,7 @@ describe 'check home page', type: :feature, js: true do
 
     expect(page).to have_content 'Welcome#index'
     expect(page).to have_content 'Find me in app/views/welcome/index.html.erb'
+    # sleep(5)
     visit 'https://www.google.com'
   end
 end
